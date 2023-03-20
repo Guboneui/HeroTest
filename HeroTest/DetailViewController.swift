@@ -1,20 +1,18 @@
 //
-//  ViewController.swift
+//  DetailViewController.swift
 //  HeroTest
 //
 //  Created by 구본의 on 2023/03/20.
 //
 
 import UIKit
-import Hero
 
-class ViewController: UIViewController {
-
+class DetailViewController: UIViewController {
   private let heroButton: UIButton = {
     let button = UIButton(type: .system)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .lightGray
-    button.setTitle("Hero", for: .normal)
+    button.setTitle("Second VC", for: .normal)
     button.titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
     return button
   }()
@@ -23,11 +21,11 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     self.setupViews()
     self.setupGestures()
+    self.view.backgroundColor = .white
   }
   
   private func setupViews() {
     self.view.addSubview(heroButton)
-    self.title = "Main"
     
     NSLayoutConstraint.activate([
       heroButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -41,16 +39,7 @@ class ViewController: UIViewController {
   
   @objc
   private func didTapButton() {
-    let detailVC = DetailViewController()
-    detailVC.modalPresentationStyle = .overFullScreen
-    detailVC.hero.isEnabled = true
-    detailVC.hero.modalAnimationType = .selectBy(
-      presenting: .push(direction: .left),
-      dismissing: .pull(direction: .right)
-    )
-    
-    print("Hero Button Clicked")
+    self.dismiss(animated: true)
   }
+
 }
-
-
